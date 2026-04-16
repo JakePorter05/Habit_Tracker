@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Habit Tracker (.NET)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Habit_Tracker/bin/Debug/net10.0/Habit_Tracker.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}/Habit_Tracker",
+      "console": "externalTerminal",
+      "stopAtEntry": false,
+      "justMyCode": true
+    }
+  ]
+}

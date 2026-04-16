@@ -1,0 +1,12 @@
+{
+  "omnisharp.projectLoading.targetFrameworkMoniker": "net10.0",
+  "omnisharp.enableRoslynAnalyzers": true,
+  "files.exclude": {
+    "obj/": true,
+    "bin/": true
+  },
+  "search.exclude": {
+    "obj/": true,
+    "bin/": true
+  }
+}
