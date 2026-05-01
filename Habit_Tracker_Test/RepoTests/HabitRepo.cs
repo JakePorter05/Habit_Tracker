@@ -188,9 +188,11 @@ public class HabitRepoTests : IDisposable
         }
         catch (IOException)
         {
+            Console.WriteLine("Failed to delete test directory. It may be in use by another process.");
         }
         catch (UnauthorizedAccessException)
         {
+            Console.WriteLine("Failed to delete test directory due to insufficient permissions.");
         }
     }
 }

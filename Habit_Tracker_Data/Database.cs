@@ -63,11 +63,13 @@ public class Database
 
         //seed some default habit types
         int seededHabitTypes = SeedHabitTypes(connection);
-        //Console.WriteLine($"Seeded {seededHabitTypes} habit types.");
+        if(seededHabitTypes > 0) 
+            Console.WriteLine($"Seeded {seededHabitTypes} habit types.");
 
         //seed some default habits
         int seededHabits = SeedHabits(connection);
-        //Console.WriteLine($"Seeded {seededHabits} habits.");
+        if(seededHabits > 0)
+            Console.WriteLine($"Seeded {seededHabits} habits.");
     }
 
     public void Initialize()
