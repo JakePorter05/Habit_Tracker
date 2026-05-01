@@ -45,10 +45,24 @@ Habit_Tracker/
 
 ### Run the Application
 
+- Built with .NET 10.0
+- There are no secrets or extra setup. Just clone and build.
+
 ```bash
 git clone https://github.com/JakePorter05/Habit_Tracker
 cd Habit_Tracker
 dotnet run --project Habit_Tracker
+```
 
-dotnet test
+### Run the Tests
 
+```bash
+dotnet test -- project Habit_Tracker_Test
+```
+
+## Things Learned 
+
+- I have always used mappers. So using ADO.NET directly was interesting. Easy to pick up with copilot. 
+- Still getting used to the aggressive auto complete from copilot. You really have to read though every one. 
+- Integration testing on the services was new. I have always done unit testing on the datalayer. 
+- This is a pretty simple challenge and review of basic C# principles. 
