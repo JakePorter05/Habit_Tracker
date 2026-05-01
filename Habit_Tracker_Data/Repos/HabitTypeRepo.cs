@@ -115,6 +115,13 @@ public class HabitTypeRepo
         using var command = new SqliteCommand(deleteQuery, connection);
         command.Parameters.AddWithValue("@Id", id);
 
-        return command.ExecuteNonQuery();
+        string deleteHabitsQuery = "DELETE FROM Habit WHERE HabitTypeId = @HabitTypeId;";
+        using var deleteHabitsCommand = new SqliteCommand(deleteHabitsQuery, connection);
+        deleteHabitsCommand.Parameters.AddWithValue("@HabitTypeId", id);
+        
+        var eventcount = deleteHabitsCommand.ExecuteNonQuery();
+        var habit = command.ExecuteNonQuery();
+        
+        return eventcount + habit;
     }
 }

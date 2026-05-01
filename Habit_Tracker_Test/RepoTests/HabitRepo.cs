@@ -128,6 +128,51 @@ public class HabitRepoTests : IDisposable
         Assert.Null(deleted);
     }
 
+    [Fact]
+    public void GetHabitsByTypeId_ShouldReturnOnlyHabitsForThatType()
+    {
+        HabitType typeA = _habitTypeRepo.AddHabitType(new HabitType
+        {
+            Name = "Running",
+            MeasurementUnit = "miles",
+            Description = "Go for a run",
+            AddedAt = new DateTime(2026, 5, 1)
+        });
+
+        HabitType typeB = _habitTypeRepo.AddHabitType(new HabitType
+        {
+            Name = "Reading",
+            MeasurementUnit = "pages",
+            Description = "Go for a run",
+            AddedAt = new DateTime(2026, 5, 1)
+        });
+
+        _repo.AddHabit(new Habit { TypeId = typeA.Id, Quantity = 3, Date = new DateTime(2026, 5, 1) });
+        _repo.AddHabit(new Habit { TypeId = typeA.Id, Quantity = 5, Date = new DateTime(2026, 5, 2) });
+        _repo.AddHabit(new Habit { TypeId = typeB.Id, Quantity = 10, Date = new DateTime(2026, 5, 3) });
+
+        var results = _repo.GetHabitsByTypeId(typeA.Id).ToList();
+
+        Assert.Equal(2, results.Count);
+        Assert.All(results, h => Assert.Equal(typeA.Id, h.TypeId));
+    }
+
+    [Fact]
+    public void GetHabitsByTypeId_ShouldReturnEmpty_WhenNoHabitsExistForType()
+    {
+        HabitType createdType = _habitTypeRepo.AddHabitType(new HabitType
+        {
+            Name = "Yoga",
+            MeasurementUnit = "minutes",
+            Description = "Do yoga",
+            AddedAt = new DateTime(2026, 5, 1)
+        });
+
+        var results = _repo.GetHabitsByTypeId(createdType.Id).ToList();
+
+        Assert.Empty(results);
+    }
+
     public void Dispose()
     {
         Environment.CurrentDirectory = _originalCurrentDirectory;

@@ -144,7 +144,6 @@ internal class HabitTypeService
 
             HabitTypeRepository.UpdateHabitType(habitType);
         }
-
     }
 
     internal void DeleteHabitTypeProcess()
@@ -153,7 +152,13 @@ internal class HabitTypeService
         Console.WriteLine("What Habit type do you want to delete?");
 
         var count = DisplayHabitTypes();
+
+        Console.WriteLine("Please enter the id of the habit you want to delete, or just hit enter to return.");
         var id = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(id))
+            return;
+
         var habitType = ValidateHabitType(id);
         while (habitType == null)
         {

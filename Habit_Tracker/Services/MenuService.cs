@@ -56,6 +56,8 @@ internal class MenuService
 
     internal void DisplayHabitEventMenu(HabitType type)
     {
+        HabitService.SetHabitType(type);
+
         var process = true;
         while (process)
         {

@@ -35,6 +35,32 @@ public class HabitRepo
         return habits;
     }
 
+    public IEnumerable<Habit> GetHabitsByTypeId(int typeId)
+    {
+        using var connection = new SqliteConnection(Database.ConnectionString);
+        connection.Open();
+
+        List<Habit> habits = new();
+        string selectQuery = "SELECT * FROM Habit WHERE TypeId = @TypeId;";
+       
+        using var command = new SqliteCommand(selectQuery, connection);
+        command.Parameters.AddWithValue("@TypeId", typeId);
+        
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            habits.Add(new Habit
+            {
+                Id = reader.GetInt32(0),
+                TypeId = reader.GetInt32(1),
+                Quantity = reader.GetInt32(2),
+                Date = reader.GetDateTime(3)
+            });
+        }
+       
+        return habits;
+    }
+
     public Habit? GetHabitById(int id)
     {
         using var connection = new SqliteConnection(Database.ConnectionString);
