@@ -99,7 +99,7 @@ public class HabitTypeRepoTests : IDisposable
     [Fact]
     public void DeleteHabitType_ShouldRemoveHabitType()
     {
-        HabitType created = _repo.AddHabitType(new HabitType
+        var created = _repo.AddHabitType(new HabitType
         {
             Name = "Meditation",
             MeasurementUnit = "minutes",
@@ -108,7 +108,7 @@ public class HabitTypeRepoTests : IDisposable
         });
 
         int result = _repo.DeleteHabitType(created.Id);
-        HabitType? deleted = _repo.GetHabitTypeById(created.Id);
+        var deleted = _repo.GetHabitTypeById(created.Id);
 
         Assert.Equal(1, result);
         Assert.Null(deleted);

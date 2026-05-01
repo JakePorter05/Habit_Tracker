@@ -1,6 +1,6 @@
 ﻿namespace Habit_Tracker.Services;
 
-internal class HabitService
+public class HabitService
 {
     HabitRepo HabitRepository { get; }
     HabitType? HabitType { get; set; }
@@ -163,7 +163,7 @@ internal class HabitService
         HabitRepository.DeleteHabit(habit.Id);
     }
 
-    Habit? ValidateHabit(string? input)
+    public Habit? ValidateHabit(string? input)
     {
         if (int.TryParse(input, out int id))
         {

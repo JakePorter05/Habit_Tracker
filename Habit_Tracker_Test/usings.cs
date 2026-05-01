@@ -2,3 +2,4 @@
 global using Habit_Tracker_Data.Repos;
 global using Microsoft.Data.Sqlite;
 global using Xunit;
+global using Habit_Tracker.Services;
