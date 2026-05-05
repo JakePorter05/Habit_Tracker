@@ -89,10 +89,14 @@ public class HabitTypeService
     internal void EditHabitTypeProcess()
     {
         Console.Clear();
-        Console.WriteLine("What Habit type do you want to edit?");
+        Console.WriteLine("What Habit type do you want to edit? Press enter without a number to return to menu.");
 
         DisplayHabitTypes();
         var id = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(id))
+            return;
+
         var habitType = ValidateHabitType(id);
         while (habitType == null)
         {

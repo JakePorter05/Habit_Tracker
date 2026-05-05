@@ -73,15 +73,21 @@ public class HabitService
         }
 
         habitEvent.Date = string.IsNullOrEmpty(dateInput) ? DateTime.Today : DateTime.Parse(dateInput);
+
+        HabitRepository.AddHabit(habitEvent);
     }
 
     internal void EditHabitProcess()
     {
         Console.Clear();
-        Console.WriteLine("What Habit do you want to edit?");
+        Console.WriteLine("What Habit do you want to edit? Press enter without a number to return to menu.");
 
         DisplayHabits();
         var id = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(id))
+            return;
+
         var habit = ValidateHabit(id);
         while (habit == null)
         {
